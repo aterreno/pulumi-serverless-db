@@ -34,7 +34,7 @@ export class PulumiRunner {
             }
             return Promise.resolve({ success: true });;
         } catch (e) {
-            return Promise.resolve({ success: false, error: e });
+            return Promise.resolve({ success: false, error: (e as string) });
         }
     }
 
@@ -50,7 +50,7 @@ export class PulumiRunner {
             }
             return Promise.resolve({ success: true });
         } catch (e) {
-            return Promise.resolve({ success: false, error: e });
+            return Promise.resolve({ success: false, error: (e as string) });
         }
     }
 
@@ -90,7 +90,7 @@ export class PulumiRunner {
             }
             return Promise.resolve({ success: true });
         } catch (e) {
-            return Promise.resolve({ success: false, error: e });
+            return Promise.resolve({ success: false, error: (e as string) });
         }
 
     }

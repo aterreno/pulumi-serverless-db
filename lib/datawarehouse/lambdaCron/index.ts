@@ -2,7 +2,6 @@ import * as pulumi from "@pulumi/pulumi";
 import * as aws from "@pulumi/aws";
 import { CallbackFunction } from "@pulumi/aws/lambda";
 import { EventRuleEvent } from "@pulumi/aws/cloudwatch";
-import { getS3Location } from "../../utils";
 import { ARN } from "@pulumi/aws";
 
 export class LambdaCronJob extends pulumi.ComponentResource {

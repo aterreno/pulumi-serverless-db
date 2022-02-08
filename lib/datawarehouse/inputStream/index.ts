@@ -32,12 +32,12 @@ export class InputStream extends pulumi.ComponentResource {
             assumeRolePolicy: JSON.stringify(assumeRolePolicy),
         });
         
-        let kinesisAccess = new aws.iam.RolePolicyAttachment(`${name}-kinesis-access`, {
+        new aws.iam.RolePolicyAttachment(`${name}-kinesis-access`, {
             role,
             policyArn: aws.iam.ManagedPolicies.AmazonKinesisFullAccess,
         });
         
-        let s3Access = new aws.iam.RolePolicyAttachment(`${name}-s3-access`, {
+        new aws.iam.RolePolicyAttachment(`${name}-s3-access`, {
             role,
             policyArn: aws.iam.ManagedPolicies.AmazonS3FullAccess,
         });
@@ -55,7 +55,7 @@ export class InputStream extends pulumi.ComponentResource {
             ]
         };
         
-        let glueAccess = new aws.iam.RolePolicy(`${name}-glue-policy`, { role: role, policy: JSON.stringify(gluePolicy) });
+        new aws.iam.RolePolicy(`${name}-glue-policy`, { role: role, policy: JSON.stringify(gluePolicy) });
         
         let logGroup = new aws.cloudwatch.LogGroup(`/aws/firehose/${name}/parquet-stream`, {
             retentionInDays: 7,
@@ -65,7 +65,7 @@ export class InputStream extends pulumi.ComponentResource {
             logGroupName: logGroup.name
         });
         
-        const parquetDeliveryStream = new aws.kinesis.FirehoseDeliveryStream(`${name}-parquet-delivery-stream`, {
+        new aws.kinesis.FirehoseDeliveryStream(`${name}-parquet-delivery-stream`, {
             kinesisSourceConfiguration: {
                 kinesisStreamArn: kinesis.arn,
                 roleArn: role.arn

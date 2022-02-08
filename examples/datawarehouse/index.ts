@@ -154,7 +154,7 @@ dataWarehouse.withTable("facts", factTableArgs);
 // Load a static facts file into the facts table.
 const data = `{"thing": "sky", "color": "blue"}\n{ "thing": "seattle sky", "color": "grey"}\n{ "thing": "oranges", "color": "orange"}`;
 
-const bucketObject = new aws.s3.BucketObject("factsFile", {
+new aws.s3.BucketObject("factsFile", {
     bucket: dataWarehouse.dataWarehouseBucket,
     content: data,
     key: `${factTableName}/facts.json`
